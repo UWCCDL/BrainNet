@@ -1,6 +1,6 @@
 # Brain-to-Brain Network
 
-### Author - Darby Losey (loseydm@uw.edu) Spring 2017
+### Author - [Darby Losey](loseydm@uw.edu), [Preston Jiang](prestonj@cs.washington.edu), [Nolan Strait](nlstrait@gmail.com)
 
 # Naming Conventions
 
