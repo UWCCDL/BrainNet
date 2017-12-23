@@ -1,0 +1,23 @@
+# Command for removing added files:
+#       git rm -r --cached .
+*.pyc
+*.idea
+*.p
+*.pickle
+*.xml
+*.iml
+*.jar
+*pptm
+*pptx
+ExperimentData
+*ppt
+CursorTask
+
+data/
+
+##################
+# Specific files
+##################
+*PycharmSettings
+trash
+
