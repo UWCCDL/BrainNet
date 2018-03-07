@@ -366,6 +366,7 @@ if __name__ == '__main__':
     # Do we want to run C1 and/or C2?
     RUN_C1, RUN_C2 = True, True
     RUN_EEG = True
+    ##### CHANGE BACK TO TRUE FOR ALL SET UP
     RUN_ARDUINO = False
     FIRE_TMS = False
     TAKE_INIT = False
