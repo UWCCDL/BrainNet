@@ -97,6 +97,7 @@ def run_main_logic(bgm, fs, eeg, high_freq, low_freq, out_buffer_queue, ard, log
             bgm.set_board(str(get_msg()))
             bgm.show_block_game()
             bgm.graphics.update_graphics()
+            control_txt = str(get_msg())
             # create dict to save info
             round_dict = dict()
             # Record meta information on the current round
