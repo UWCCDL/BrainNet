@@ -179,11 +179,11 @@ def run_main_logic(ref_list, bgm, ard, logger, fs, eeg, out_buffer_queue,
             # get current board string and send to Senders
             board_str = bgm.board_to_string()
             send_message_to_other_computers(message=board_str)
-
+            # send control text
+            send_message_to_other_computers(message=control_txt)
             # log data for this round
             round_info.clear()
             round_info['round_index'] = round_index
-            round_info['initial_board_str'] = board_str
             round_info['C1_and_C2_start_message_sent_time'] = time.time()
 
             # let subject know we're going to wait
