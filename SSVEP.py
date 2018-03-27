@@ -8,7 +8,7 @@ from CCDLUtil.SignalProcessing.Filters import butter_bandpass_filter
 
 
 def trial_logic(eeg_system, out_buffer_queue, bgm, fs, high_freq, low_freq, prompt, window_width,
-                drift_correction=False, sleep_time_if_not_ran=2):
+                drift_correction=False, sleep_time_if_not_ran=2, direction=True):
     """
     Run a full trial of SSVEP experiment.
 
@@ -32,19 +32,23 @@ def trial_logic(eeg_system, out_buffer_queue, bgm, fs, high_freq, low_freq, prom
     boundary_right = window_width - 200
     # mark start time
     start_time = time.time()
-    # If our EEG system is None, we'll sleep for a bit and then return a random result
+    # If our EEG system is None, we fake the animation, to the side of direction
     if eeg_system is None:
         time.sleep(sleep_time_if_not_ran)
-        steps = 5
+        if direction:
+            steps = [1, 1, 0, 0, 1, 1, 1, 1, 1]
+        else:
+            steps = [0, 0, 1, 1, 0, 0, 0, 0, 0]
         packet_index = 0
-        while packet_index < steps:
-            x = 1 # random.randint(0, 1)
+        while packet_index < len(steps):
+            x = steps[packet_index]
             # compare densities of 17Hz and 15Hz frequencies
             time.sleep(2)
             if x == 0:
                 cursor_x += Constants.STEP
                 bgm.graphics.move_cursor_delta_x(Constants.STEP)
             else:
+                cursor_x -= Constants.STEP
                 bgm.graphics.move_cursor_delta_x(-Constants.STEP)
             # if we reach left boundary
             if cursor_x + Constants.CURSOR_RADIUS <= boundary_left:
