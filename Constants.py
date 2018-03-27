@@ -76,3 +76,5 @@ C2 = 'C2'
 
 EXPERIMENTAL_STR = 'Experimental'
 CONTROL_STR = 'Control'
+
+FALSE_TRIAL = [1, 3, 5, 6, 7, 9, 11, 12, 13, 14]
