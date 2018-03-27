@@ -97,6 +97,7 @@ def run_main_logic(bgm, fs, eeg, high_freq, low_freq, out_buffer_queue, ard, log
             bgm.set_board(str(get_msg()))
             bgm.show_block_game()
             bgm.graphics.update_graphics()
+            control_txt = str(get_msg())
             # create dict to save info
             round_dict = dict()
             # Record meta information on the current round
@@ -109,9 +110,14 @@ def run_main_logic(bgm, fs, eeg, high_freq, low_freq, out_buffer_queue, ard, log
             if RUN_ARDUINO:
                 ard.turn_both_on()
             # ----------RUN SSVEP----------
-            response, start_data_collection_time, end_data_collection_time = \
-                SSVEP.trial_logic(eeg, out_buffer_queue, bgm, fs, high_freq, low_freq, "Turn the piece or not?", 1680,
-                                  drift_correction=True)
+            if trial_index in Constants.FALSE_TRIAL and round_index == 0:
+                response, start_data_collection_time, end_data_collection_time = \
+                    SSVEP.trial_logic(None, out_buffer_queue, bgm, fs, high_freq, low_freq, "Turn the piece or not?",
+                                      1680, drift_correction=True, direction=(control_txt == "Control"))
+            else:
+                response, start_data_collection_time, end_data_collection_time = \
+                    SSVEP.trial_logic(eeg, out_buffer_queue, bgm, fs, high_freq, low_freq, "Turn the piece or not?", 1680,
+                                      drift_correction=True)
             if RUN_ARDUINO:
                 ard.turn_both_off()
             # Give our answer to receiver
@@ -150,6 +156,7 @@ def run_main_logic(bgm, fs, eeg, high_freq, low_freq, out_buffer_queue, ard, log
         bgm.graphics.set_text_dictionary_list({'text': feedback, 'pos': (None, None), 'color': (255, 255, 255)})
         time.sleep(3)
         logger.info(str(trial_dict))
+        trial_index += 1
 
 
 def get_msg():
