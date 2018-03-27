@@ -98,11 +98,11 @@ def run_main_logic(bgm, fs, eeg, high_freq, low_freq, out_buffer_queue, ard, log
             bgm.show_block_game()
             bgm.graphics.update_graphics()
             control_txt = str(get_msg())
+            print control_txt
             # create dict to save info
             round_dict = dict()
             # Record meta information on the current round
             round_dict['round_index'] = round_index
-            round_dict['initial_board_str'] = bgm.board_to_string()
             round_dict['C0_start_message_received'] = time.time()
             # wait to let subject determine their answer
             time.sleep(Constants.SLEEP_AFTER_SHOWING_BLOCK_GAME_TO_CX)
@@ -186,8 +186,8 @@ if __name__ == '__main__':
     DATA_FOLDER = os.path.abspath('ExperimentData')
     ''' Debug Flags and parameters'''
     C0_RESPONSE_TIME_SECONDS = 3
-    ARDUINO_COMPORT = 9
-    OPENBCI_COMPORT = 10
+    ARDUINO_COMPORT = "COM9"
+    OPENBCI_COMPORT = "COM12"
     HIGH_FREQ = 17
     LOW_FREQ = 15
     RUN_C0 = True
