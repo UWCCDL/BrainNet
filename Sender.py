@@ -26,7 +26,7 @@ def start_graphics():
 
     :return: BlockGameManager object
     """
-    return BlockGameManager(window_x_pos=0, window_y_pos=0, background_width=1920, background_height=1080,
+    return BlockGameManager(window_x_pos=0, window_y_pos=0, background_width=1680, background_height=1050,
                             board_height=Constants.BOARD_HEIGHT, board_width=Constants.BOARD_WIDTH,
                             cell_size=Constants.CELL_SIZE, num_cols=Constants.NUM_COLS,
                             num_rows=Constants.NUM_ROWS)
@@ -180,8 +180,8 @@ if __name__ == '__main__':
     DATA_FOLDER = os.path.abspath('ExperimentData')
     ''' Debug Flags and parameters'''
     C0_RESPONSE_TIME_SECONDS = 3
-    ARDUINO_COMPORT = 9
-    OPENBCI_COMPORT = 10
+    ARDUINO_COMPORT = "COM4"
+    OPENBCI_COMPORT = "COM6"
     HIGH_FREQ = 17
     LOW_FREQ = 15
     RUN_C0 = True
