@@ -110,9 +110,16 @@ def run_main_logic(bgm, fs, eeg, high_freq, low_freq, out_buffer_queue, ard, log
             if RUN_ARDUINO:
                 ard.turn_both_on()
             # ----------RUN SSVEP----------
-            response, start_data_collection_time, end_data_collection_time = \
-                SSVEP.trial_logic(eeg, out_buffer_queue, bgm, fs, high_freq, low_freq, "Turn the piece or not?", 1680,
-                                  drift_correction=True)
+            if AFFECTED and trial_index in Constants.FALSE_TRIAL and round_index == 0:
+                response, start_data_collection_time, end_data_collection_time = \
+                    SSVEP.trial_logic(None, out_buffer_queue, bgm, fs, high_freq, low_freq, "Turn the piece or not?",
+                                      1680, drift_correction=True, direction=(control_txt == "Control"))
+            else:
+                response, start_data_collection_time, end_data_collection_time = \
+                    SSVEP.trial_logic(eeg, out_buffer_queue, bgm, fs, high_freq, low_freq, "Turn the piece or not?",
+                                      1680,
+                                      drift_correction=True)
+
             if RUN_ARDUINO:
                 ard.turn_both_off()
             # Give our answer to receiver
