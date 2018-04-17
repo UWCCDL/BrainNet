@@ -181,7 +181,7 @@ if __name__ == '__main__':
     ''' Debug Flags and parameters'''
     C0_RESPONSE_TIME_SECONDS = 3
     ARDUINO_COMPORT = "COM4"
-    OPENBCI_COMPORT = "COM6"
+    OPENBCI_COMPORT = "COM5"
     HIGH_FREQ = 17
     LOW_FREQ = 15
     RUN_C0 = True
@@ -189,6 +189,7 @@ if __name__ == '__main__':
     TAKE_INIT = False
     VERBOSE = True  # We'll print what is happening to console if this is set to True.
     RUN_ARDUINO = True
+    AFFECTED = False
     LIVE_CHANNELS = [int(input("What is the index (start from zero) for Oz channel? "))]
     main(data_folder=DATA_FOLDER, live_channels=LIVE_CHANNELS, high_freq=HIGH_FREQ,
          low_freq=LOW_FREQ, take_init=TAKE_INIT, com_port=ARDUINO_COMPORT)
