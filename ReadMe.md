@@ -1,5 +1,7 @@
 # Brain-to-Brain Network
 
+## FOR LASTEST WORK, please check Receiver/Sender1/Sender2 branches, each specialized for the subject.
+
 ### Author - [Darby Losey](loseydm@uw.edu), [Preston Jiang](prestonj@cs.washington.edu), [Nolan Strait](nlstrait@gmail.com)
 
 # Naming Conventions
