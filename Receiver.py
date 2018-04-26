@@ -79,7 +79,7 @@ def main(data_folder):
         Assert.assert_less(tms_high, 100)
         Assert.assert_greater(tms_low, 0)
     else:
-        tms_high, tms_low = 80, 50
+        tms_high, tms_low = 70, 55
 
     # Create Arduino
     if RUN_ARDUINO:
@@ -339,6 +339,7 @@ def wait_for_trial_results():
     if c1_message not in valid_messages or c2_message not in valid_messages:
         raise ValueError("Invalid message - Expected either %s or %s" %
                          (Messages.ROTATE, Messages.DONT_ROTATE))
+    print "got both messages..."
     return c1_message, c2_message
 
 
@@ -358,7 +359,7 @@ if __name__ == '__main__':
     # This is receiver C0
     COMPUTER_TYPE = 'C0'
     # Arduino comport
-    ARDUINO_COMPORT = 15
+    ARDUINO_COMPORT = 10
     # data storage
     DATA_FOLDER = os.path.abspath('ExperimentData')
     # -----Debug Flags and parameters----- #
@@ -367,8 +368,8 @@ if __name__ == '__main__':
     RUN_C1, RUN_C2 = True, True
     RUN_EEG = True
     ##### CHANGE BACK TO TRUE FOR ALL SET UP
-    RUN_ARDUINO = False
-    FIRE_TMS = False
+    RUN_ARDUINO = True
+    FIRE_TMS = True
     TAKE_INIT = False
     VERBOSE = True  # We'll print what is happening to console if this is set to True.
 
