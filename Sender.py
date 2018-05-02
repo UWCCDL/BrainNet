@@ -1,6 +1,5 @@
 import os
 import time
-import Queue
 import datetime
 import Messages
 import Constants
@@ -13,7 +12,6 @@ import CCDLUtil.DataManagement.FileParser as FileParser
 import CCDLUtil.DataManagement.Log as Log
 from CCDLUtil.ArduinoInterface.Arduino2LightInterface import Arduino2LightInterface as Arduino
 from CCDLUtil.Utility.VerboseInfo import verbose_info
-import CCDLUtil.Utility.AssertVal as Assert
 
 
 """Create TCP Client"""
@@ -26,7 +24,7 @@ def start_graphics():
 
     :return: BlockGameManager object
     """
-    return BlockGameManager(window_x_pos=0, window_y_pos=0, background_width=1920, background_height=1080,
+    return BlockGameManager(window_x_pos=0, window_y_pos=0, background_width=1680, background_height=1050,
                             board_height=Constants.BOARD_HEIGHT, board_width=Constants.BOARD_WIDTH,
                             cell_size=Constants.CELL_SIZE, num_cols=Constants.NUM_COLS,
                             num_rows=Constants.NUM_ROWS)
@@ -110,7 +108,7 @@ def run_main_logic(bgm, fs, eeg, high_freq, low_freq, out_buffer_queue, ard, log
             if RUN_ARDUINO:
                 ard.turn_both_on()
             # ----------RUN SSVEP----------
-            if AFFECTED and trial_index in Constants.FALSE_TRIAL and round_index == 0:
+            if AFFECTED and trial_index in Constants.FALSE_TRIAL:
                 response, start_data_collection_time, end_data_collection_time = \
                     SSVEP.trial_logic(None, out_buffer_queue, bgm, fs, high_freq, low_freq, "Turn the piece or not?",
                                       1680, drift_correction=True, direction=(control_txt == "Control"))
@@ -186,16 +184,16 @@ if __name__ == '__main__':
     DATA_FOLDER = os.path.abspath('ExperimentData')
     ''' Debug Flags and parameters'''
     C0_RESPONSE_TIME_SECONDS = 3
-    ARDUINO_COMPORT = "COM9"
-    OPENBCI_COMPORT = "COM12"
+    ARDUINO_COMPORT = "COM4"
+    OPENBCI_COMPORT = "COM5"
     HIGH_FREQ = 17
     LOW_FREQ = 15
     RUN_C0 = True
     RUN_EEG = True
     TAKE_INIT = False
-    VERBOSE = True  # We'll print what is happening to console if this is set to True.
+    VERBOSE = True
     RUN_ARDUINO = True
-    AFFECTED = True
+    AFFECTED = False
     LIVE_CHANNELS = [int(input("What is the index (start from zero) for Oz channel? "))]
     main(data_folder=DATA_FOLDER, live_channels=LIVE_CHANNELS, high_freq=HIGH_FREQ,
          low_freq=LOW_FREQ, take_init=TAKE_INIT, com_port=ARDUINO_COMPORT)
