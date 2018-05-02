@@ -52,12 +52,12 @@ PORT = 9999
 C0_IP_Address = '128.95.226.122'
 # Preston
 # 173.250.172.128
-# 173.250.161.71\
+# 173.250.161.71
 # 128.95.134.108 rn C1
 C1_IP_ADDRESS = '128.95.226.134'
 C2_IP_ADDRESS = '128.95.226.48'
 
-NUM_EXP_TRIALS = 5
+NUM_EXP_TRIALS = 20 # just a upper limit, would stop when server exhausts its list
 NUM_CONTROL_TRIALS = 10
 
 FLASH_RED_DUR = 0.2

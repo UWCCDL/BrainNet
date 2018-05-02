@@ -110,7 +110,7 @@ def run_main_logic(bgm, fs, eeg, high_freq, low_freq, out_buffer_queue, ard, log
             if RUN_ARDUINO:
                 ard.turn_both_on()
             # ----------RUN SSVEP----------
-            if AFFECTED and trial_index in Constants.FALSE_TRIAL and round_index == 0:
+            if AFFECTED and trial_index in Constants.FALSE_TRIAL:
                 response, start_data_collection_time, end_data_collection_time = \
                     SSVEP.trial_logic(None, out_buffer_queue, bgm, fs, high_freq, low_freq, "Turn the piece or not?",
                                       1680, drift_correction=True, direction=(control_txt == "Control"))
@@ -122,6 +122,7 @@ def run_main_logic(bgm, fs, eeg, high_freq, low_freq, out_buffer_queue, ard, log
 
             if RUN_ARDUINO:
                 ard.turn_both_off()
+            print "sending to server..."
             # Give our answer to receiver
             send_msg(message=response)
             # Give Feedback to the Sender
@@ -158,6 +159,7 @@ def run_main_logic(bgm, fs, eeg, high_freq, low_freq, out_buffer_queue, ard, log
         bgm.graphics.set_text_dictionary_list({'text': feedback, 'pos': (None, None), 'color': (255, 255, 255)})
         time.sleep(3)
         logger.info(str(trial_dict))
+        trial_index += 1
 
 
 def get_msg():
@@ -196,7 +198,6 @@ if __name__ == '__main__':
     TAKE_INIT = False
     VERBOSE = True  # We'll print what is happening to console if this is set to True.
     RUN_ARDUINO = True
-    AFFECTED = False
+    AFFECTED = True
     LIVE_CHANNELS = [int(input("What is the index (start from zero) for Oz channel? "))]
-    main(data_folder=DATA_FOLDER, live_channels=LIVE_CHANNELS, high_freq=HIGH_FREQ,
-         low_freq=LOW_FREQ, take_init=TAKE_INIT, com_port=ARDUINO_COMPORT)
+    main(data_folder=DATA_FOLDER, live_channels=LIVE_CHANNELS, high_freq=HIGH_FREQ, low_freq=LOW_FREQ, take_init=TAKE_INIT, com_port=ARDUINO_COMPORT)
