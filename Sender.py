@@ -1,6 +1,5 @@
 import os
 import time
-import Queue
 import datetime
 import Messages
 import Constants
@@ -13,7 +12,6 @@ import CCDLUtil.DataManagement.FileParser as FileParser
 import CCDLUtil.DataManagement.Log as Log
 from CCDLUtil.ArduinoInterface.Arduino2LightInterface import Arduino2LightInterface as Arduino
 from CCDLUtil.Utility.VerboseInfo import verbose_info
-import CCDLUtil.Utility.AssertVal as Assert
 
 
 """Create TCP Client"""
