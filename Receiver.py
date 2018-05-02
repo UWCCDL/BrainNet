@@ -79,7 +79,7 @@ def main(data_folder):
         Assert.assert_less(tms_high, 100)
         Assert.assert_greater(tms_low, 0)
     else:
-        tms_high, tms_low = 70, 55
+        tms_high, tms_low = 70, 45
 
     # Create Arduino
     if RUN_ARDUINO:
@@ -170,6 +170,7 @@ def run_main_logic(ref_list, bgm, ard, logger, fs, eeg, out_buffer_queue,
         bgm.new_board(control=(control_txt == Constants.CONTROL_STR))
         round_info = dict()
         # for round_index in [1, 2]:  # Round_index = 1 if we are first starting, 2 if we are on the second pass.
+        c0_response = None
         for round_index in range(Constants.NUM_ROUNDS):
 
             # show just the piece
@@ -180,9 +181,15 @@ def run_main_logic(ref_list, bgm, ard, logger, fs, eeg, out_buffer_queue,
             board_str = bgm.board_to_string()
             send_message_to_other_computers(message=board_str)
             # send control text
-            send_message_to_other_computers(message=control_txt)
+            if round_index == 0:
+                send_message_to_other_computers(message=control_txt)
+            else:
+                if (control_txt == "Control" and c0_response == "rotate") or (control_txt != "Control" and c0_response == "do not rotate"):
+                    send_message_to_other_computers(message="Experimental")
+                else:
+                    send_message_to_other_computers(message="Control")
             # log data for this round
-            round_info.clear()
+            round_info = dict()
             round_info['round_index'] = round_index
             round_info['C1_and_C2_start_message_sent_time'] = time.time()
 
