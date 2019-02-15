@@ -46,18 +46,12 @@ Communication Related
 """
 PORT = 9999
 # Guthrie
-# 128.95.226.122
-# 69.91.185.63
-# 173.250.200.83
 C0_IP_Address = '128.95.226.122'
-# Preston
-# 173.250.172.128
-# 173.250.161.71\
-# 128.95.134.108 rn C1
 C1_IP_ADDRESS = '128.95.226.134'
-C2_IP_ADDRESS = '128.95.226.48'
+C2_IP_ADDRESS = '128.95.226.196'
 
-NUM_EXP_TRIALS = 5
+# Just an upper limit, will stop when server exhausts its list
+NUM_EXP_TRIALS = 20
 NUM_CONTROL_TRIALS = 10
 
 FLASH_RED_DUR = 0.2
@@ -77,4 +71,4 @@ C2 = 'C2'
 EXPERIMENTAL_STR = 'Experimental'
 CONTROL_STR = 'Control'
 
-FALSE_TRIAL = [1, 3, 5, 6, 7, 9, 11, 12, 13, 14]
+FALSE_TRIAL = [1, 2, 4, 5, 6, 9, 10, 12, 13, 14]
