@@ -46,9 +46,9 @@ Communication Related
 """
 PORT = 9999
 # Guthrie
-C0_IP_Address = '128.95.226.122'
+C0_IP_Address = '128.95.226.69'
 C1_IP_ADDRESS = '128.95.226.134'
-C2_IP_ADDRESS = '128.95.226.196'
+C2_IP_ADDRESS = '128.95.226.99'
 
 # Just an upper limit, will stop when server exhausts its list
 NUM_EXP_TRIALS = 20
